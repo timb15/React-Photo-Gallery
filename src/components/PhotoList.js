@@ -2,8 +2,9 @@ import React from 'react';
 import Photo from './Photo';
 import NoResults from './NoResults';
 
-const PhotoList = ({ pics }) => {
+const PhotoList = ({ pics, title }) => {
     
+
     let photos = [];
     
     if(pics.length > 0) {
@@ -14,7 +15,7 @@ const PhotoList = ({ pics }) => {
 
 return (
     <div className="photo-container">
-        <h2>Results</h2>
+        <h2>{title}</h2>
         <ul>
             {photos}
         </ul>
