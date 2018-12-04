@@ -17,10 +17,11 @@ class App extends Component {
     catPhotos: [],
     dogPhotos: [],
     monkeyPhotos:[],
-    searchTitle: ''
+    searchTitle: '',
+    loading: true
   }
 
-
+  //fetching the data for the nav links and saving it to state.
   componentDidMount() {
 
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=cats&per_page=24&format=json&nojsoncallback=1`)
@@ -42,17 +43,23 @@ class App extends Component {
       .catch(err => console.log("Error fetching data", err));
   }
 
+  //function to fetch data when a user submits a value in the searchform
   handleSearch = (query) => {
-
+    this.resetLoading();
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => this.setState({
         photos: response.data.photos.photo,
-        searchTitle: query
+        searchTitle: query,
+        loading: false
       }))
       .catch(err => console.log("Error fetching data", err));
-
   }
 
+  //Function to reset the loading state to true
+  resetLoading() {
+    this.setState({loading: true});
+  }
+  //dynamically rendering the page depending on the route selected.
   render() {
     return (
       <BrowserRouter>
@@ -63,7 +70,14 @@ class App extends Component {
             <Route exact path='/cats' render={() => <PhotoList pics={this.state.catPhotos} title='Cats'/>} />
             <Route exact path='/dogs' render={() => <PhotoList pics={this.state.dogPhotos} title='Dogs'/>} />
             <Route exact path='/monkeys' render={() => <PhotoList pics={this.state.monkeyPhotos} title='Monkeys' />} />
-            <Route exact path='/searchresults' render={() => <PhotoList pics={this.state.photos} title={`Search results for '${this.state.searchTitle}'`}/>}/>
+
+            {/*Sets the image gallery to display a loading text until the images are fetched. */}
+            {
+              (this.state.loading)
+              ? <h2>Loading...</h2>
+        
+              : <Route exact path='/searchresults' render={() => <PhotoList pics={this.state.photos} title={`Search results for '${this.state.searchTitle}'`}/>}/>
+            }
             <Route component={NotFound} />
           </Switch>
         </div>

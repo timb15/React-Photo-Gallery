@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class SearchForm extends Component {
 
+    //Function calls the search function from the App component when the searchform is submitted.
     handleSubmit = (e) => {
         e.preventDefault();  
         let query = this.query.value;
@@ -9,6 +10,7 @@ class SearchForm extends Component {
         this.changePath();
     }
 
+    //function to set the path once a search has been submitted.
     changePath = () => {
         let path = `/searchresults`;
         this.props.history.history.push(path);
