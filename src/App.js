@@ -18,7 +18,7 @@ class App extends Component {
     dogPhotos: [],
     monkeyPhotos:[],
     searchTitle: '',
-    loading: true
+    loading: false
   }
 
   //fetching the data for the nav links and saving it to state.
