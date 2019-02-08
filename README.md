@@ -4,6 +4,7 @@
 This project displays images from the Flickr API. Users can serach for images or select from one of the pre-loaded galleries.
 
 ## Technologies Used
+[Node.js](https://nodejs.org/en/docs/) <br>
 [React](https://reactjs.org/)<br>
 [Axios](https://github.com/axios)
 
