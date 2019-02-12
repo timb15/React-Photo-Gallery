@@ -10,7 +10,7 @@ This project displays images from the Flickr API. Users can serach for images or
 
 ## Running the Project
 1. Clone the project files.
-2. Navigate to the tech-degree-project-7 directory in a terminal.
+2. Navigate to the project folder in a terminal.
 3. Type *__npm install__* to install the project dependencies.
 4. Type *__npm start__* to run the app. 
 5. A browser window should open to localhost:3000.
